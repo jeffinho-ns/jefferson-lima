@@ -1,0 +1,280 @@
+/*
+ * Estilos compartilhados das seções e páginas internas.
+ * Atenção: regras sem @layer (globals.css) vencem utilitários do Tailwind;
+ * por isso cores/tipografia que precisam variar ficam em classes próprias aqui.
+ */
+
+:root {
+  --font-condensed:
+    var(--font-barlow), "Arial Narrow", ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-condensed {
+  font-family: var(--font-condensed);
+}
+
+.section-shell {
+  position: relative;
+  padding-block: clamp(4.5rem, 12vh, 8rem);
+}
+
+.surface-organic {
+  background-color: var(--color-off-white);
+  background-image:
+    radial-gradient(ellipse 55% 45% at 18% 28%, #e7e7e2 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 82% 22%, #ecece8 0%, transparent 65%),
+    radial-gradient(ellipse 60% 50% at 70% 78%, #e3e3de 0%, transparent 70%);
+}
+
+.surface-topo {
+  pointer-events: none;
+  opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' viewBox='0 0 800 600' fill='none'%3E%3Cpath d='M0 120C80 100 160 140 240 130C320 120 400 80 480 90C560 100 640 140 800 110' stroke='%23dcdcd7' stroke-width='1'/%3E%3Cpath d='M0 220C100 200 180 250 280 240C380 230 460 180 560 190C660 200 720 240 800 220' stroke='%23d8d8d3' stroke-width='1'/%3E%3Cpath d='M0 340C90 360 170 310 270 320C370 330 450 380 560 360C650 345 720 310 800 330' stroke='%23dcdcd7' stroke-width='1'/%3E%3Cpath d='M0 460C110 440 200 490 310 480C420 470 500 420 610 430C700 438 750 470 800 455' stroke='%23d6d6d1' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-position: center;
+}
+
+.section-wrap {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 3.2vw, 3.5rem);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.62;
+}
+
+.title-xl {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+  font-size: clamp(2.75rem, 8.4vw, 8.5rem);
+}
+
+.title-lg {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.95;
+  font-size: clamp(2.25rem, 5.6vw, 5.25rem);
+}
+
+.title-md {
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  font-size: clamp(1.75rem, 3.2vw, 3rem);
+}
+
+.accent-lime {
+  color: var(--color-neon-lime);
+}
+
+.accent-on-light {
+  /* Lime não tem contraste sobre fundo claro: usa carbon com sublinhado lime. */
+  background-image: linear-gradient(var(--color-neon-lime), var(--color-neon-lime));
+  background-repeat: no-repeat;
+  background-size: 100% 0.28em;
+  background-position: 0 92%;
+}
+
+/* ---- Links e botões ---------------------------------------------------- */
+
+.cta-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: 0.2rem;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  transition: background-size 0.5s var(--ease-cinematic);
+}
+
+.cta-link:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
+}
+
+.cta-link:focus-visible,
+.pill:focus-visible,
+.row-link:focus-visible {
+  outline: 2px solid var(--color-neon-lime);
+  outline-offset: 4px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-condensed);
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.2rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pill-dark {
+  background: var(--color-carbon-black);
+  color: var(--color-off-white);
+  border-color: var(--color-carbon-black);
+}
+
+.pill-dark:hover {
+  background: var(--color-graphite);
+}
+
+.pill-outline:hover {
+  background: var(--color-neon-lime);
+  color: var(--color-carbon-black);
+  border-color: var(--color-neon-lime);
+}
+
+.arrow-shift {
+  transition: transform 0.5s var(--ease-cinematic);
+}
+
+.group:hover .arrow-shift,
+.group:focus-visible .arrow-shift,
+.pill:hover .arrow-shift,
+.cta-link:hover .arrow-shift {
+  transform: translate(0.25rem, -0.25rem);
+}
+
+/* ---- Revelação por rolagem (CSS puro, degrada para visível) -------------- */
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(2.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .reveal {
+    animation: reveal-up linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 45%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    animation: none !important;
+  }
+}
+
+/* ---- Superfícies ------------------------------------------------------- */
+
+.bg-grain-dark {
+  background-color: var(--color-carbon-black);
+  background-image: radial-gradient(
+    ellipse 60% 50% at 85% 0%,
+    color-mix(in srgb, var(--color-neon-lime) 9%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+.cover-placeholder {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--color-graphite);
+  background-image:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-neon-lime) 14%, transparent) 0%,
+      transparent 55%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 3.4rem,
+      color-mix(in srgb, var(--color-off-white) 6%, transparent) 3.4rem,
+      color-mix(in srgb, var(--color-off-white) 6%, transparent) calc(3.4rem + 1px)
+    );
+}
+
+/* ---- Modos: expansão no hover (desktop) -------------------------------- */
+
+@media (min-width: 900px) {
+  .modes-split > .mode-panel {
+    flex: 1 1 0;
+    transition: flex-grow 0.9s var(--ease-cinematic);
+  }
+
+  .modes-split:hover > .mode-panel:hover,
+  .modes-split:focus-within > .mode-panel:focus-within {
+    flex-grow: 1.35;
+  }
+}
+
+/* ---- Serviços: painel expansível -------------------------------------- */
+
+.expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.7s var(--ease-cinematic);
+}
+
+.expand[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+
+.expand > div {
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* ---- Tecnologias ------------------------------------------------------- */
+
+.tech-name {
+  transition:
+    color 0.25s ease,
+    transform 0.5s var(--ease-cinematic);
+  display: inline-block;
+}
+
+.tech-name:hover {
+  background: var(--color-neon-lime);
+  color: var(--color-carbon-black);
+  transform: translateY(-0.12em);
+}
+
+/* ---- 404 ---------------------------------------------------------------- */
+
+.nf-scene {
+  --mx: 0;
+  --my: 0;
+}
+
+.nf-layer {
+  transition: transform 0.35s ease-out;
+}
